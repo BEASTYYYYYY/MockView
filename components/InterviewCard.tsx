@@ -5,18 +5,18 @@ import Image from 'next/image';
 import { Button } from './ui/button';
 import Link from 'next/link';
 import DisplayTechIcons from './DisplayTechIcons';
+import { getFeedbackByInterviewId } from '@/lib/actions/general.action';
 const InterviewCard = async ({
-    interviewId,
+    id,
     userId,
     role,
     type,
     techstack,
     createdAt,
 }: InterviewCardProps) => {
-    const feedback = null as Feedback | null;
+    const feedback = userId && id? await getFeedbackByInterviewId({interviewId : id,userId }): null;
 
     const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
-
     const badgeColor =
         {
             Behavioral: "bg-light-400",
@@ -40,8 +40,7 @@ const InterviewCard = async ({
                         )}
                     >
                         <p className="badge-text ">{normalizedType}</p>
-                    </div>
-                      
+                    </div>         
                     {/* Cover Image */}
                     <Image
                         src={getRandomInterviewCover()}
@@ -65,7 +64,6 @@ const InterviewCard = async ({
                             />
                             <p>{formattedDate}</p>
                         </div>
-
                         <div className="flex flex-row gap-2 items-center">
                             <Image src="/star.svg" width={22} height={22} alt="star" />
                             <p>{feedback?.totalScore || "---"}/100</p>
@@ -78,7 +76,6 @@ const InterviewCard = async ({
                             "You haven't taken this interview yet. Take it now to improve your skills."}
                     </p>
                 </div>
-
                 <div className="flex flex-row justify-between">
                     <DisplayTechIcons techStack={techstack} />
 
@@ -86,11 +83,12 @@ const InterviewCard = async ({
                         <Link
                             href={
                                 feedback
-                                    ? `/interview/${interviewId}/feedback`
-                                    : `/interview/${interviewId}`
+                                ? `/interview/${id}/feedback`
+                                : `/interview/${id}`
                             }
                         >
                             {feedback ? "Check Feedback" : "View Interview"}
+                           
                         </Link>
                     </Button>
                 </div>
