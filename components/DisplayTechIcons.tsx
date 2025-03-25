@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import { cn, getTechLogos } from "@/lib/utils";
 
 const DisplayTechIcons = async ({ techStack }: TechIconProps) => {
@@ -16,7 +15,6 @@ const DisplayTechIcons = async ({ techStack }: TechIconProps) => {
                     )}
                 >
                     <span className="tech-tooltip">{tech}</span>
-
                     <Image
                         src={url}
                         alt={tech}

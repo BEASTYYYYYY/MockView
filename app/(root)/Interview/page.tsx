@@ -7,7 +7,6 @@ const Page = async () => {
     return (
         <>
             <h3>Interview generation</h3>
-
             <Agent
                 userName={user?.name || "Guest"}
                 userId={user?.id}
@@ -17,5 +16,4 @@ const Page = async () => {
         </>
     );
 };
-
 export default Page;

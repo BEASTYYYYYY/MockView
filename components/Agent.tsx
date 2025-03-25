@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
 import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import { interviewer } from "@/constants";
@@ -124,7 +123,8 @@ const Agent = ({
                     userid: userId,
                 },
             });
-        } else {
+        } 
+        else {
             let formattedQuestions = "";
             if (questions) {
                 formattedQuestions = questions
@@ -162,12 +162,11 @@ const Agent = ({
                     </div>
                     <h3>AI Interviewer</h3>
                 </div>
-
                 {/* User Profile Card */}
                 <div className="card-border">
                     <div className="card-content">
                         <Image
-                            src="/user-avatar.png"
+                            src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.svg"
                             alt="profile-image"
                             width={539}
                             height={539}
@@ -177,7 +176,6 @@ const Agent = ({
                     </div>
                 </div>
             </div>
-
             {messages.length > 0 && (
                 <div className="transcript-border">
                     <div className="transcript">
@@ -193,7 +191,6 @@ const Agent = ({
                     </div>
                 </div>
             )}
-
             <div className="w-full flex justify-center">
                 {callStatus !== "ACTIVE" ? (
                     <button className="relative btn-call" onClick={() => handleCall()}>
@@ -203,11 +200,8 @@ const Agent = ({
                                 callStatus !== "CONNECTING" && "hidden"
                             )}
                         />
-
                         <span className="relative">
-                            {callStatus === "INACTIVE" || callStatus === "FINISHED"
-                                ? "Call"
-                                : ". . ."}
+                            {callStatus === "INACTIVE" || callStatus === "FINISHED" ? "Call" : ". . ."}
                         </span>
                     </button>
                 ) : (

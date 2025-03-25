@@ -15,7 +15,6 @@ const InterviewCard = async ({
     createdAt,
 }: InterviewCardProps) => {
     const feedback = userId && id? await getFeedbackByInterviewId({interviewId : id,userId }): null;
-
     const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
     const badgeColor =
         {
@@ -49,10 +48,8 @@ const InterviewCard = async ({
                         height={90}
                         className="rounded-full object-fit size-[90px]"
                     />
-
                     {/* Interview Role */}
                     <h3 className="mt-5 capitalize">{role} Interview</h3>
-
                     {/* Date & Score */}
                     <div className="flex flex-row gap-5 mt-3">
                         <div className="flex flex-row gap-2">
@@ -69,7 +66,6 @@ const InterviewCard = async ({
                             <p>{feedback?.totalScore || "---"}/100</p>
                         </div>
                     </div>
-
                     {/* Feedback or Placeholder Text */}
                     <p className="line-clamp-2 mt-5">
                         {feedback?.finalAssessment ||
@@ -78,7 +74,6 @@ const InterviewCard = async ({
                 </div>
                 <div className="flex flex-row justify-between">
                     <DisplayTechIcons techStack={techstack} />
-
                     <Button className="btn-primary">
                         <Link
                             href={

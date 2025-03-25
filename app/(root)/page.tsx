@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -7,12 +8,11 @@ import {getInterviewsByUserId, getLatestInterviews} from "@/lib/actions/general.
 
 const Page = async()=> {
   const user = await getCurrentUser();
-
   const [userInterviews, allInterview] = await Promise.all([
     getInterviewsByUserId(user?.id!),
     getLatestInterviews({ userId: user?.id! }),
   ]);
-
+  
   const hasPastInterviews = userInterviews?.length! > 0;
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
@@ -24,12 +24,10 @@ const Page = async()=> {
           <p className="text-lg">
             Practice real interview questions & get instant feedback
           </p>
-
           <Button asChild className="btn-primary max-sm:w-full">
             <Link href="/interview">Start an Interview</Link>
           </Button>
         </div>
-
         <Image
           src="/robot.png"
           alt="robo-dude"
@@ -61,7 +59,6 @@ const Page = async()=> {
               <InterviewCard
                 key={interview.id}
                 userId={user?.id}
-                interviewId={interview.id}
                 role={interview.role}
                 type={interview.type}
                 techstack={interview.techstack}

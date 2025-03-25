@@ -3,15 +3,7 @@
 import React from 'react'
 import { z } from 'zod';
 import { Button } from "@/components/ui/button"
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import {Form} from "@/components/ui/form"
 import Image from 'next/image';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -23,7 +15,6 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { signIn, signUp } from '@/lib/actions/auth.action';
 import { auth } from '@/firebase/client';
 
-
 const authFormSchema = (type: FormType) => {
     return z.object({
         name: type === "sign-up" ? z.string().min(3) : z.string().optional(),
@@ -31,7 +22,6 @@ const authFormSchema = (type: FormType) => {
         password: z.string().min(3),
     });
 };
-
 
 const AuthForm = ({ type }: { type: FormType }) => {
     const router = useRouter();
@@ -65,7 +55,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
                     toast.error(result.message);
                     return;
                 }
-
                 toast.success("Account created successfully. Please sign in.");
                 router.push("/sign-in");
             }
@@ -94,7 +83,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
         }
     }
     const isSignIn = type === "sign-in";
-
     return (
         <div className="card-border lg:min-w-[566px]">
             <div className="flex flex-col gap-6 card py-14 px-10">
@@ -114,7 +102,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
                                 type="text"
                             />
                         )}
-
                         <FormField
                             control={form.control}
                             name="email"

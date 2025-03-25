@@ -19,7 +19,7 @@ const Feedback = async ({ params }: RouteParams) => {
 
     const feedback = await getFeedbackByInterviewId({
         interviewId: id,
-        userId: user?.id!,
+        userId: user ? user.id : "undefined",
     });
 
     return (
@@ -44,7 +44,6 @@ const Feedback = async ({ params }: RouteParams) => {
                             /100
                         </p>
                     </div>
-
                     {/* Date */}
                     <div className="flex flex-row gap-2">
                         <Image src="/calendar.svg" width={22} height={22} alt="calendar" />
@@ -56,11 +55,8 @@ const Feedback = async ({ params }: RouteParams) => {
                     </div>
                 </div>
             </div>
-
             <hr />
-
             <p>{feedback?.finalAssessment}</p>
-
             {/* Interview Breakdown */}
             <div className="flex flex-col gap-4">
                 <h2>Breakdown of the Interview:</h2>
@@ -73,7 +69,6 @@ const Feedback = async ({ params }: RouteParams) => {
                     </div>
                 ))}
             </div>
-
             <div className="flex flex-col gap-3">
                 <h3>Strengths</h3>
                 <ul>
@@ -91,7 +86,6 @@ const Feedback = async ({ params }: RouteParams) => {
                     ))}
                 </ul>
             </div>
-
             <div className="buttons">
                 <Button className="btn-secondary flex-1">
                     <Link href="/" className="flex w-full justify-center">
@@ -100,7 +94,6 @@ const Feedback = async ({ params }: RouteParams) => {
                         </p>
                     </Link>
                 </Button>
-
                 <Button className="btn-primary flex-1">
                     <Link
                         href={`/interview/${id}`}
